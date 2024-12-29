@@ -1,5 +1,4 @@
 import streamlit as st
-from dotenv import load_dotenv
 import os
 from langchain_community.vectorstores import FAISS
 from langchain_huggingface import HuggingFaceEmbeddings
@@ -14,7 +13,6 @@ st.title("Footwear Catalog Chatbot")
 st.write("Ask any question about our footwear catalog!")
 
 # Load environment variables
-load_dotenv()
 
 # Initialize embeddings
 try:
