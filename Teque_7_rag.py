@@ -12,8 +12,6 @@ st.set_page_config(page_title="Footwear Catalog Chatbot", layout="centered")
 st.title("Footwear Catalog Chatbot")
 st.write("Ask any question about our footwear catalog!")
 
-# Load environment variables
-
 # Initialize embeddings
 try:
     embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-mpnet-base-v2")
@@ -29,10 +27,10 @@ except Exception as e:
     st.error(f"Error loading vectorstore: {e}")
     st.stop()
 
-# Fetch the API key
-openai_api_key = os.getenv("OPENAI_API_KEY")
+# Fetch the API key from Streamlit secrets
+openai_api_key = st.secrets["OPENAI_API_KEY"]
 if not openai_api_key:
-    st.error("The OpenAI API key is not set. Please update your .env file.")
+    st.error("The OpenAI API key is not set. Please update your Streamlit Secrets.")
     st.stop()
 
 # Load the LLM
